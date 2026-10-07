@@ -1,0 +1,158 @@
+@page
+@model proyecto_desarmado.Pages.Vehiculos.IndexModel
+
+@{
+    ViewData["Title"] = "Vehículos";
+}
+
+<h1>Listado de vehículos</h1>
+<p>
+    <a asp-page="./Create" class="btn btn-success">
+        Agregar vehículo
+    </a>
+
+    <a asp-page="./Importar" class="btn btn-outline-primary">
+        Importar desde Excel
+    </a>
+</p>
+<form method="get" class="row g-2 mb-4">
+    <div class="col-md-7">
+        <input type="text" name="buscar" value="@Model.Buscar" class="form-control"
+               placeholder="Buscar por patente, siniestro, marca, modelo, asegurado o estado" />
+    </div>
+    <div class="col-md-3">
+        <select name="estado" class="form-select">
+            <option value="">Todos los estados</option>
+
+            <option value="Finalizado" selected="@(Model.EstadoSeleccionado == "Finalizado")">
+                Finalizado
+            </option>
+
+            <option value="En trámite" selected="@(Model.EstadoSeleccionado == "En trámite")">
+                En trámite
+            </option>
+
+            <option value="Deudas" selected="@(Model.EstadoSeleccionado == "Deudas")">
+                Deudas
+            </option>
+
+            <option value="Sucesión" selected="@(Model.EstadoSeleccionado == "Sucesión")">
+                Sucesión
+            </option>
+        </select>
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary">
+            Buscar
+        </button>
+    </div>
+
+    <div class="col-auto">
+        <a asp-page="./Index" class="btn btn-outline-secondary">
+            Limpiar
+        </a>
+    </div>
+</form>
+<div class="table-responsive">
+    <table class="table table-striped align-middle">
+        <thead>
+            <tr>
+                <th>Carpeta</th>
+                <th>Marca y modelo</th>
+                <th>Patente</th>
+                <th>Número de siniestro</th>
+                <th>Color</th>
+                <th>Tipo de baja</th>
+                <th>Estado</th>
+                <th>Fecha de ingreso</th>
+                <th>Papeles</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model.Vehiculo)
+            {
+                <tr>
+                    <td>
+                        @(string.IsNullOrWhiteSpace(item.NumeroCarpeta)
+                                     ? "-"
+                                      : item.NumeroCarpeta)
+                    </td>
+                    <td>
+                        <strong>@item.Marca</strong><br />
+                        <span class="text-muted">@item.Modelo</span>
+                    </td>
+
+                    <td>@item.Patente</td>
+                    <td>@item.NumeroSiniestro</td>
+                    <td>@item.Color</td>
+
+                    <td>
+                        @(string.IsNullOrWhiteSpace(item.TipoBaja)
+                            ? "-"
+                            : item.TipoBaja)
+                    </td>
+                    <td>
+                        <span class="badge bg-secondary">
+                            @item.Estado
+                        </span>
+                    </td>
+
+                    <td>@item.FechaIngreso.ToShortDateString()</td>
+
+                    <td>
+                        @(item.TienePapeles ? "Sí" : "No")
+                    </td>
+
+                    <td class="text-nowrap">
+                        <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
+                        <a asp-page="./Details" asp-route-id="@item.Id">Detalles</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.Id">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@if (Model.TotalPaginas > 1)
+{
+    <nav aria-label="Paginación de vehículos">
+        <ul class="pagination justify-content-center mt-4">
+
+            <li class="page-item @(Model.PaginaActual == 1 ? "disabled" : "")">
+                <a class="page-link"
+                   asp-page="./Index"
+                   asp-route-pagina="@(Model.PaginaActual - 1)"
+                   asp-route-buscar="@Model.Buscar"
+                   asp-route-estado="@Model.EstadoSeleccionado">
+                    Anterior
+                </a>
+            </li>
+
+            @for (var numero = 1; numero <= Model.TotalPaginas; numero++)
+            {
+                <li class="page-item @(numero == Model.PaginaActual ? "active" : "")">
+                    <a class="page-link"
+                       asp-page="./Index"
+                       asp-route-pagina="@numero"
+                       asp-route-buscar="@Model.Buscar"
+                       asp-route-estado="@Model.EstadoSeleccionado">
+                        @numero
+                    </a>
+                </li>
+            }
+
+            <li class="page-item @(Model.PaginaActual == Model.TotalPaginas ? "disabled" : "")">
+                <a class="page-link"
+                   asp-page="./Index"
+                   asp-route-pagina="@(Model.PaginaActual + 1)"
+                   asp-route-buscar="@Model.Buscar"
+                   asp-route-estado="@Model.EstadoSeleccionado">
+                    Siguiente
+                </a>
+            </li>
+
+        </ul>
+    </nav>
+}

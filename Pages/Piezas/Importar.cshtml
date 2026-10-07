@@ -1,0 +1,77 @@
+@page
+@model proyecto_desarmado.Pages.Piezas.ImportarModel
+
+@{
+    ViewData["Title"] = "Importar piezas";
+}
+
+<h1>Importar piezas desde Excel</h1>
+
+<p>
+    Se importarán únicamente piezas con RUDAC de las hojas
+    CHAPA y PERIFERICOS.
+</p>
+
+<div class="alert alert-info">
+    No se incluirán vendidos, pedidos, listados Chuky
+    ni piezas sin RUDAC.
+</div>
+
+<form method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label asp-for="ArchivoExcel" class="form-label">
+            Archivo de stock
+        </label>
+
+        <input asp-for="ArchivoExcel"
+               type="file"
+               accept=".xlsx"
+               class="form-control" />
+    </div>
+
+    <button type="submit"
+        name="accion"
+        value="revisar"
+        class="btn btn-outline-secondary">
+    Revisar archivo
+</button>
+
+<div class="alert alert-warning mt-4">
+    <strong>Primera carga de stock real</strong>
+
+    <p>
+        Se reemplazarán todas las piezas actuales de prueba
+        por las piezas con RUDAC del Excel.
+        Los vehículos se conservarán.
+    </p>
+
+    <div class="form-check">
+        <input asp-for="ConfirmarReemplazo"
+               class="form-check-input" />
+
+        <label asp-for="ConfirmarReemplazo"
+               class="form-check-label">
+            Tengo el respaldo y confirmo que todas las piezas
+            actuales son de prueba.
+        </label>
+    </div>
+
+    <button type="submit"
+            name="accion"
+            value="guardar"
+            class="btn btn-primary mt-3">
+        Reemplazar piezas de prueba e importar
+    </button>
+</div>
+
+    <a asp-page="./Index" class="btn btn-outline-secondary">
+        Volver
+    </a>
+</form>
+
+@if (!string.IsNullOrWhiteSpace(Model.Mensaje))
+{
+    <div class="alert alert-info mt-3">
+        @Model.Mensaje
+    </div>
+}

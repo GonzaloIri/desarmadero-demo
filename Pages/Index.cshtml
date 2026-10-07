@@ -1,0 +1,106 @@
+@page
+@model IndexModel
+
+@{
+    ViewData["Title"] = "Resumen";
+}
+
+<div class="intro">
+    <div>
+        <div class="eyebrow">TU INVENTARIO, A MANO</div>
+        <h1>Panel del desarmadero</h1>
+        <p>Una vista general de tus vehículos y repuestos.</p>
+    </div>
+
+    <a asp-page="/Piezas/Create" class="btn btn-primary">
+        + Agregar pieza
+    </a>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h2 class="card-title">Vehículos registrados</h2>
+                <p class="display-4">@Model.CantidadVehiculos</p>
+
+                <a asp-page="/Vehiculos/Index"
+                   class="btn btn-outline-secondary">
+                    Ver vehículos →
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h2 class="card-title">Piezas en el inventario</h2>
+                <p class="display-4">@Model.CantidadPiezas</p>
+
+                <a asp-page="/Piezas/Index"
+                   class="btn btn-outline-secondary">
+                    Explorar piezas →
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card h-100 metric-highlight">
+            <div class="card-body">
+                <h2 class="card-title">Piezas disponibles</h2>
+                <p class="display-4">@Model.PiezasDisponibles</p>
+
+                <a asp-page="/Piezas/Index" class="btn btn-primary">
+                    Consultar inventario →
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-3 mt-1">
+    <div class="col-md-6">
+        <div class="card h-100">
+            <div class="card-body">
+                <h2 class="card-title">Piezas reservadas</h2>
+                <p class="display-4">@Model.PiezasReservadas</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card h-100">
+            <div class="card-body">
+                <h2 class="card-title">Piezas vendidas</h2>
+                <p class="display-4">@Model.PiezasVendidas</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h2 class="section-label">ACCESOS RÁPIDOS</h2>
+
+<div class="row g-3">
+    <div class="col-md-4">
+        <a class="quick-link" asp-page="/Vehiculos/Create">
+            <strong>Ingresar un vehículo ↗</strong>
+            <small>Registrá sus datos y documentación.</small>
+        </a>
+    </div>
+
+    <div class="col-md-4">
+        <a class="quick-link" asp-page="/Piezas/Importar">
+            <strong>Revisar stock de Excel ↗</strong>
+            <small>Revisá piezas y RUDAC antes de importar.</small>
+        </a>
+    </div>
+
+    <div class="col-md-4">
+        <a class="quick-link" asp-page="/Vehiculos/Importar">
+            <strong>Importar vehículos ↗</strong>
+            <small>Cargá vehículos desde una planilla.</small>
+        </a>
+    </div>
+</div>

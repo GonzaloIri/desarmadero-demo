@@ -1,0 +1,16 @@
+DEMO DEL DESARMADERO
+
+Esta es una copia independiente del proyecto original.
+Contiene 378 piezas con nombres, marcas, modelos y categorías del catálogo.
+Los demás datos se regeneraron. Incluye 6 vehículos ficticios.
+No contiene la base real, respaldos, planilla de stock ni historial Git.
+
+Para ejecutar desde esta carpeta:
+dotnet run --no-launch-profile --urls http://localhost:5075
+
+Abrir http://localhost:5075
+La base demo.db está configurada como solo lectura. Se bloquean los POST.
+Esta versión permite explorar formularios, pero no guardar ni importar.
+No necesita restablecimiento porque los visitantes no pueden modificar datos.
+
+Todavía no está publicada. El alojamiento y el enlace público son el siguiente paso.

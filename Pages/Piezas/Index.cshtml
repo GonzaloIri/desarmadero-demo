@@ -1,0 +1,153 @@
+@page
+@model proyecto_desarmado.Pages.Piezas.IndexModel
+
+@{
+    ViewData["Title"] = "Piezas";
+}
+
+<h1>Listado de piezas</h1>
+
+<form method="get" class="row g-2 mb-4">
+    <div class="col-md-7">
+        <input type="text" name="buscar" value="@Model.Buscar" class="form-control"
+               aria-label="Buscar piezas"
+               placeholder="Pieza, RUDAC, precinto, marca, modelo, color, código, ubicación o patente" />
+    </div>
+
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary">
+            Buscar
+        </button>
+    </div>
+
+    <div class="col-auto">
+        <a asp-page="./Index" class="btn btn-outline-secondary">
+            Limpiar
+        </a>
+    </div>
+</form>
+
+<p>
+    <a asp-page="Create">Agregar piezas</a>
+</p>
+<div class="table-responsive">
+<table class="table table-hover align-middle">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Pieza[0].Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pieza[0].Categoria)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pieza[0].Codigo)
+            </th>
+            <th>@Html.DisplayNameFor(model => model.Pieza[0].NumeroRudac)</th>
+            <th>@Html.DisplayNameFor(model => model.Pieza[0].NumeroPrecinto)</th>
+            <th>@Html.DisplayNameFor(model => model.Pieza[0].MarcaOrigen)</th>
+            <th>@Html.DisplayNameFor(model => model.Pieza[0].ModeloOrigen)</th>
+            <th>@Html.DisplayNameFor(model => model.Pieza[0].Color)</th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pieza[0].Estado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pieza[0].Precio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pieza[0].Ubicacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pieza[0].Observaciones)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pieza[0].Vehiculo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Pieza.Count == 0)
+        {
+            <tr><td colspan="14" class="text-center text-muted py-4">No se encontraron piezas.</td></tr>
+        }
+        @foreach (var item in Model.Pieza)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Categoria)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Codigo)
+                </td>
+                <td>@(string.IsNullOrWhiteSpace(item.NumeroRudac) ? "-" : item.NumeroRudac)</td>
+                <td>@(string.IsNullOrWhiteSpace(item.NumeroPrecinto) ? "-" : item.NumeroPrecinto)</td>
+                <td>@(string.IsNullOrWhiteSpace(item.MarcaOrigen) ? "-" : item.MarcaOrigen)</td>
+                <td>@(string.IsNullOrWhiteSpace(item.ModeloOrigen) ? "-" : item.ModeloOrigen)</td>
+                <td>@(string.IsNullOrWhiteSpace(item.Color) ? "-" : item.Color)</td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Precio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ubicacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Observaciones)
+                </td>
+                <td>
+                    @if (item.Vehiculo != null)
+                    {
+                        @item.Vehiculo.Descripcion
+                    }
+                    else
+                    {
+                        <span>@item.MarcaOrigen @item.ModeloOrigen</span>
+                    }
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Detalles</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>
+@if (Model.TotalPaginas > 1)
+{
+    <nav aria-label="Paginación de piezas">
+        <ul class="pagination justify-content-center mt-4">
+
+            <li class="page-item @(Model.PaginaActual == 1 ? "disabled" : "")">
+                <a class="page-link" asp-page="./Index" asp-route-pagina="@(Model.PaginaActual - 1)"
+                   asp-route-buscar="@Model.Buscar">
+                    Anterior
+                </a>
+            </li>
+
+            @for (var numero = 1; numero <= Model.TotalPaginas; numero++)
+            {
+                <li class="page-item @(numero == Model.PaginaActual ? "active" : "")">
+                    <a class="page-link" asp-page="./Index" asp-route-pagina="@numero" asp-route-buscar="@Model.Buscar">
+                        @numero
+                    </a>
+                </li>
+            }
+
+            <li class="page-item @(Model.PaginaActual == Model.TotalPaginas ? "disabled" : "")">
+                <a class="page-link" asp-page="./Index" asp-route-pagina="@(Model.PaginaActual + 1)"
+                   asp-route-buscar="@Model.Buscar">
+                    Siguiente
+                </a>
+            </li>
+
+        </ul>
+    </nav>
+}

@@ -1,0 +1,11 @@
+bin/
+obj/
+
+*.db
+*.db-shm
+*.db-wal
+
+.vscode/
+.DS_Store
+# Base ficticia necesaria para la demo
+!demo.db

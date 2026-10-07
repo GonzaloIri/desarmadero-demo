@@ -1,0 +1,90 @@
+@page
+@model proyecto_desarmado.Pages.Vehiculos.DeleteModel
+
+@{
+    ViewData["Title"] = "Borrar vehículo";
+}
+
+<h1>Borrar vehículo</h1>
+
+<h3>¿Está seguro de que quiere borrar este vehículo?</h3>
+<div>
+    <h4>Vehiculo</h4>
+    <hr />
+    <dl class="row">
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Vehiculo.NumeroCarpeta)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Vehiculo.NumeroCarpeta)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Vehiculo.TipoBaja)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Vehiculo.TipoBaja)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Vehiculo.Estado)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Vehiculo.Estado)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Vehiculo.Marca)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Vehiculo.Marca)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Vehiculo.Modelo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Vehiculo.Modelo)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Vehiculo.Anio)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Vehiculo.Anio)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Vehiculo.Patente)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Vehiculo.Patente)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Vehiculo.NumeroMotor)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Vehiculo.NumeroMotor)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Vehiculo.NumeroChasis)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Vehiculo.NumeroChasis)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Vehiculo.FechaIngreso)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Vehiculo.FechaIngreso)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Vehiculo.Observaciones)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Vehiculo.Observaciones)
+        </dd>
+    </dl>
+
+    <form method="post">
+        <input type="hidden" asp-for="Vehiculo.Id" />
+        <input type="submit" value="Borrar" class="btn btn-danger" /> |
+        <a asp-page="./Index">Cancelar y volver al listado</a>
+    </form>
+</div>

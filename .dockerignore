@@ -1,0 +1,11 @@
+**/bin
+**/obj
+.git
+.vscode
+.DS_Store
+respaldos
+*.xlsx
+*.db
+!demo.db
+*.db-wal
+*.db-shm

@@ -1,0 +1,146 @@
+@page
+@model proyecto_desarmado.Pages.Piezas.DetailsModel
+
+@{
+    ViewData["Title"] = "Detalles de la pieza";
+}
+
+<h1>Detalles de la pieza</h1>
+
+<div>
+    <hr />
+
+    <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Pieza.Nombre)
+        </dt>
+        <dd class="col-sm-9">
+            @Model.Pieza.Nombre
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Pieza.Categoria)
+        </dt>
+        <dd class="col-sm-9">
+            @Model.Pieza.Categoria
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Pieza.MarcaOrigen)
+        </dt>
+        <dd class="col-sm-9">
+            @Model.Pieza.MarcaOrigen
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Pieza.ModeloOrigen)
+        </dt>
+        <dd class="col-sm-9">
+            @Model.Pieza.ModeloOrigen
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Pieza.AnioOrigen)
+        </dt>
+        <dd class="col-sm-9">
+            @(Model.Pieza.AnioOrigen?.ToString() ?? "-")
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Pieza.Color)
+        </dt>
+        <dd class="col-sm-9">
+            @(string.IsNullOrWhiteSpace(Model.Pieza.Color)
+                ? "-"
+                : Model.Pieza.Color)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Pieza.PatenteOrigen)
+        </dt>
+        <dd class="col-sm-9">
+            @(string.IsNullOrWhiteSpace(Model.Pieza.PatenteOrigen)
+                ? "-"
+                : Model.Pieza.PatenteOrigen)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Pieza.NumeroRudac)
+        </dt>
+        <dd class="col-sm-9">
+            @(string.IsNullOrWhiteSpace(Model.Pieza.NumeroRudac)
+                ? "-"
+                : Model.Pieza.NumeroRudac)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Pieza.NumeroPrecinto)
+        </dt>
+        <dd class="col-sm-9">
+            @(string.IsNullOrWhiteSpace(Model.Pieza.NumeroPrecinto)
+                ? "-"
+                : Model.Pieza.NumeroPrecinto)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Pieza.Compatibilidades)
+        </dt>
+        <dd class="col-sm-9">
+            @(string.IsNullOrWhiteSpace(Model.Pieza.Compatibilidades)
+                ? "-"
+                : Model.Pieza.Compatibilidades)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Pieza.Estado)
+        </dt>
+        <dd class="col-sm-9">
+            <span class="badge bg-secondary">
+                @Model.Pieza.Estado
+            </span>
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Pieza.Precio)
+        </dt>
+        <dd class="col-sm-9">
+            $ @Model.Pieza.Precio.ToString("N2")
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Pieza.Observaciones)
+        </dt>
+        <dd class="col-sm-9">
+            @(string.IsNullOrWhiteSpace(Model.Pieza.Observaciones)
+                ? "-"
+                : Model.Pieza.Observaciones)
+        </dd>
+
+        <dt class="col-sm-3">
+            Vehículo registrado
+        </dt>
+        <dd class="col-sm-9">
+            @if (Model.Pieza.Vehiculo != null)
+            {
+                @Model.Pieza.Vehiculo.Descripcion
+            }
+            else
+            {
+                <span>Sin relacionar</span>
+            }
+        </dd>
+    </dl>
+</div>
+
+<div>
+    <a asp-page="./Edit"
+       asp-route-id="@Model.Pieza.Id"
+       class="btn btn-primary">
+        Editar
+    </a>
+
+    <a asp-page="./Index"
+       class="btn btn-outline-secondary">
+        Volver al listado
+    </a>
+</div>

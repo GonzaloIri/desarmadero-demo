@@ -1,0 +1,48 @@
+﻿@page
+@model proyecto_desarmado.Pages.Vehiculos.ImportarModel
+
+@{
+    ViewData["Title"] = "Importar vehículos";
+}
+
+<h1>Importar vehículos desde Excel</h1>
+
+<p class="text-muted">
+    Seleccioná el archivo Excel. Se leerá la Hoja1 y no se volverán
+    a cargar vehículos cuya patente ya exista.
+</p>
+
+@if (!string.IsNullOrEmpty(Model.Mensaje))
+{
+    <div class="alert alert-success">
+        @Model.Mensaje
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(Model.Error))
+{
+    <div class="alert alert-danger">
+        @Model.Error
+    </div>
+}
+
+<form method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label asp-for="ArchivoExcel" class="form-label">
+            Archivo Excel
+        </label>
+
+        <input asp-for="ArchivoExcel"
+               type="file"
+               accept=".xlsx"
+               class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        Importar vehículos
+    </button>
+
+    <a asp-page="./Index" class="btn btn-secondary">
+        Volver
+    </a>
+</form>
