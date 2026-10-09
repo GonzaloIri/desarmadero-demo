@@ -121,3 +121,11 @@ footer span{display:none}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}
 }
 
+
+/* El control permanece visible aun con la navegación plegada. */
+.topbar{align-items:center;gap:16px;flex-wrap:wrap}
+.menu-toggle{font-size:12px;letter-spacing:0;white-space:nowrap;min-height:40px}
+.topbar .workspace-label{margin-left:auto}
+.menu-hidden .sidebar{display:none}
+.menu-hidden .workspace{margin-left:0}
+.sidebar{overflow-y:auto}
