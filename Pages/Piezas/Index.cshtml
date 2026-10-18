@@ -63,7 +63,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Pieza[0].Vehiculo)
             </th>
-            <th></th>
+            <th>Venta</th>
         </tr>
     </thead>
     <tbody>
@@ -73,9 +73,11 @@
         }
         @foreach (var item in Model.Pieza)
         {
-            <tr>
+            <tr class="inventory-row" data-details-url="@Url.Page("./Details", new { id = item.Id })">
                 <td>
-                    @Html.DisplayFor(modelItem => item.Nombre)
+                    <a asp-page="./Details" asp-route-id="@item.Id" class="inventory-details-link">
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </a>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Categoria)
@@ -110,10 +112,18 @@
                         <span>@item.MarcaOrigen @item.ModeloOrigen</span>
                     }
                 </td>
-                <td>
-                    <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
-                    <a asp-page="./Details" asp-route-id="@item.Id">Detalles</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.Id">Eliminar</a>
+                <td class="text-nowrap">
+                    @if (item.Estado == "Vendida")
+                    {
+                        <span class="badge bg-success">Vendida</span>
+                    }
+                    else
+                    {
+                        <button type="button" class="btn btn-primary btn-sm" disabled
+                                title="Disponible en la versión completa. Esta demo es de solo consulta.">
+                            Marcar vendida
+                        </button>
+                    }
                 </td>
             </tr>
         }

@@ -131,7 +131,10 @@
         </dd>
     </dl>
 </div>
-<div>
-    <a asp-page="./Edit" asp-route-id="@Model.Vehiculo.Id">Editar</a> |
-    <a asp-page="./Index">Volver al listado</a>
+<div class="form-actions">
+    <a asp-page="./Edit" asp-route-id="@Model.Vehiculo.Id"
+       class="btn btn-outline-primary">Editar vehículo</a>
+    <a asp-page="./Delete" asp-route-id="@Model.Vehiculo.Id"
+       class="btn btn-outline-danger">Eliminar vehículo</a>
+    <a asp-page="./Index" class="btn btn-outline-secondary">Volver al listado</a>
 </div>

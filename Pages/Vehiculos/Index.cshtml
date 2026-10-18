@@ -54,7 +54,7 @@
     </div>
 </form>
 <div class="table-responsive">
-    <table class="table table-striped align-middle">
+    <table class="table table-striped table-hover align-middle">
         <thead>
             <tr>
                 <th>Carpeta</th>
@@ -66,22 +66,23 @@
                 <th>Estado</th>
                 <th>Fecha de ingreso</th>
                 <th>Papeles</th>
-                <th>Acciones</th>
             </tr>
         </thead>
 
         <tbody>
             @foreach (var item in Model.Vehiculo)
             {
-                <tr>
+                <tr class="inventory-row" data-details-url="@Url.Page("./Details", new { id = item.Id })">
                     <td>
                         @(string.IsNullOrWhiteSpace(item.NumeroCarpeta)
                                      ? "-"
                                       : item.NumeroCarpeta)
                     </td>
                     <td>
-                        <strong>@item.Marca</strong><br />
-                        <span class="text-muted">@item.Modelo</span>
+                        <a asp-page="./Details" asp-route-id="@item.Id" class="inventory-details-link">
+                            <strong>@item.Marca</strong><br />
+                            <span class="text-muted">@item.Modelo</span>
+                        </a>
                     </td>
 
                     <td>@item.Patente</td>
@@ -105,11 +106,6 @@
                         @(item.TienePapeles ? "Sí" : "No")
                     </td>
 
-                    <td class="text-nowrap">
-                        <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
-                        <a asp-page="./Details" asp-route-id="@item.Id">Detalles</a> |
-                        <a asp-page="./Delete" asp-route-id="@item.Id">Eliminar</a>
-                    </td>
                 </tr>
             }
         </tbody>

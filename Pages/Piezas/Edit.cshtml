@@ -6,21 +6,15 @@
 }
 
 <h1>Editar pieza</h1>
-
-<h4>Datos de la pieza</h4>
-<hr />
-
-<div class="row">
-    <div class="col-md-6">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly"
-                 class="text-danger"></div>
-
-            <input type="hidden" asp-for="Pieza.Id" />
-            <input type="hidden" asp-for="Pieza.Codigo" />
-            <input type="hidden" asp-for="Pieza.Ubicacion" />
-
-            <div class="mb-3">
+<p class="text-muted">Completá los datos principales. Podés desplegar las otras secciones cuando las necesites.</p>
+<form method="post" class="inventory-form">
+<div asp-validation-summary="All" class="text-danger"></div>
+<input type="hidden" asp-for="Pieza.Id" />
+<input type="hidden" asp-for="Pieza.Codigo" />
+<input type="hidden" asp-for="Pieza.Ubicacion" />
+<section class="form-section"><h2>Datos principales</h2>
+<div class="form-grid">
+<div class="mb-3">
                 <label asp-for="Pieza.Nombre"
                        class="control-label"></label>
                 <span class="text-danger">*</span>
@@ -32,8 +26,7 @@
                 <span asp-validation-for="Pieza.Nombre"
                       class="text-danger"></span>
             </div>
-
-            <div class="mb-3">
+<div class="mb-3">
                 <label asp-for="Pieza.Categoria"
                        class="control-label"></label>
                 <span class="text-danger">*</span>
@@ -45,8 +38,7 @@
                 <span asp-validation-for="Pieza.Categoria"
                       class="text-danger"></span>
             </div>
-
-            <div class="mb-3">
+<div class="mb-3">
                 <label asp-for="Pieza.MarcaOrigen"
                        class="control-label"></label>
                 <span class="text-danger">*</span>
@@ -58,8 +50,7 @@
                 <span asp-validation-for="Pieza.MarcaOrigen"
                       class="text-danger"></span>
             </div>
-
-            <div class="mb-3">
+<div class="mb-3">
                 <label asp-for="Pieza.ModeloOrigen"
                        class="control-label"></label>
                 <span class="text-danger">*</span>
@@ -71,77 +62,7 @@
                 <span asp-validation-for="Pieza.ModeloOrigen"
                       class="text-danger"></span>
             </div>
-
-            <div class="mb-3">
-                <label asp-for="Pieza.AnioOrigen"
-                       class="control-label"></label>
-
-                <input asp-for="Pieza.AnioOrigen"
-                       class="form-control"
-                       type="number"
-                       min="1900"
-                       max="2100" />
-
-                <span asp-validation-for="Pieza.AnioOrigen"
-                      class="text-danger"></span>
-            </div>
-
-            <div class="mb-3">
-                <label asp-for="Pieza.Color"
-                       class="control-label"></label>
-
-                <input asp-for="Pieza.Color"
-                       class="form-control" />
-
-                <span asp-validation-for="Pieza.Color"
-                      class="text-danger"></span>
-            </div>
-
-            <div class="mb-3">
-                <label asp-for="Pieza.PatenteOrigen"
-                       class="control-label"></label>
-
-                <input asp-for="Pieza.PatenteOrigen"
-                       class="form-control" />
-
-                <span asp-validation-for="Pieza.PatenteOrigen"
-                      class="text-danger"></span>
-            </div>
-
-            <div class="mb-3">
-                <label asp-for="Pieza.NumeroRudac"
-                       class="control-label"></label>
-
-                <input asp-for="Pieza.NumeroRudac"
-                       class="form-control" />
-
-                <span asp-validation-for="Pieza.NumeroRudac"
-                      class="text-danger"></span>
-            </div>
-
-            <div class="mb-3">
-                <label asp-for="Pieza.NumeroPrecinto"
-                       class="control-label"></label>
-
-                <input asp-for="Pieza.NumeroPrecinto"
-                       class="form-control" />
-
-                <span asp-validation-for="Pieza.NumeroPrecinto"
-                      class="text-danger"></span>
-            </div>
-
-            <div class="mb-3">
-                <label asp-for="Pieza.Compatibilidades"
-                       class="control-label"></label>
-
-                <input asp-for="Pieza.Compatibilidades"
-                       class="form-control" />
-
-                <span asp-validation-for="Pieza.Compatibilidades"
-                      class="text-danger"></span>
-            </div>
-
-            <div class="mb-3">
+<div class="mb-3">
                 <label asp-for="Pieza.Estado"
                        class="control-label"></label>
 
@@ -156,8 +77,7 @@
                 <span asp-validation-for="Pieza.Estado"
                       class="text-danger"></span>
             </div>
-
-            <div class="mb-3">
+<div class="mb-3">
                 <label asp-for="Pieza.Precio"
                        class="control-label"></label>
 
@@ -171,20 +91,11 @@
                 <span asp-validation-for="Pieza.Precio"
                       class="text-danger"></span>
             </div>
-
-            <div class="mb-3">
-                <label asp-for="Pieza.Observaciones"
-                       class="control-label"></label>
-
-                <textarea asp-for="Pieza.Observaciones"
-                          class="form-control"
-                          rows="3"></textarea>
-
-                <span asp-validation-for="Pieza.Observaciones"
-                      class="text-danger"></span>
-            </div>
-
-            <div class="mb-3">
+</div>
+</section>
+<details class="form-section" open="@(!ViewData.ModelState.IsValid)"><summary>Origen y características</summary>
+<div class="form-grid">
+<div class="mb-3">
                 <label asp-for="Pieza.VehiculoId"
                        class="control-label"></label>
 
@@ -197,18 +108,88 @@
                 <span asp-validation-for="Pieza.VehiculoId"
                       class="text-danger"></span>
             </div>
+<div class="mb-3">
+                <label asp-for="Pieza.AnioOrigen"
+                       class="control-label"></label>
 
-            <button type="submit" class="btn btn-primary">
-                Guardar
-            </button>
-        </form>
-    </div>
+                <input asp-for="Pieza.AnioOrigen"
+                       class="form-control"
+                       type="number"
+                       min="1900"
+                       max="2100" />
+
+                <span asp-validation-for="Pieza.AnioOrigen"
+                      class="text-danger"></span>
+            </div>
+<div class="mb-3">
+                <label asp-for="Pieza.Color"
+                       class="control-label"></label>
+
+                <input asp-for="Pieza.Color"
+                       class="form-control" />
+
+                <span asp-validation-for="Pieza.Color"
+                      class="text-danger"></span>
+            </div>
+<div class="mb-3">
+                <label asp-for="Pieza.PatenteOrigen"
+                       class="control-label"></label>
+
+                <input asp-for="Pieza.PatenteOrigen"
+                       class="form-control" />
+
+                <span asp-validation-for="Pieza.PatenteOrigen"
+                      class="text-danger"></span>
+            </div>
+<div class="mb-3">
+                <label asp-for="Pieza.Compatibilidades"
+                       class="control-label"></label>
+
+                <input asp-for="Pieza.Compatibilidades"
+                       class="form-control" />
+
+                <span asp-validation-for="Pieza.Compatibilidades"
+                      class="text-danger"></span>
+            </div>
 </div>
+</details>
+<details class="form-section" open="@(!ViewData.ModelState.IsValid)"><summary>Identificación y notas</summary>
+<div class="form-grid">
+<div class="mb-3">
+                <label asp-for="Pieza.NumeroRudac"
+                       class="control-label"></label>
 
-<div class="mt-3">
-    <a asp-page="./Index">Volver al listado</a>
+                <input asp-for="Pieza.NumeroRudac"
+                       class="form-control" />
+
+                <span asp-validation-for="Pieza.NumeroRudac"
+                      class="text-danger"></span>
+            </div>
+<div class="mb-3">
+                <label asp-for="Pieza.NumeroPrecinto"
+                       class="control-label"></label>
+
+                <input asp-for="Pieza.NumeroPrecinto"
+                       class="form-control" />
+
+                <span asp-validation-for="Pieza.NumeroPrecinto"
+                      class="text-danger"></span>
+            </div>
+<div class="mb-3">
+                <label asp-for="Pieza.Observaciones"
+                       class="control-label"></label>
+
+                <textarea asp-for="Pieza.Observaciones"
+                          class="form-control"
+                          rows="3"></textarea>
+
+                <span asp-validation-for="Pieza.Observaciones"
+                      class="text-danger"></span>
+            </div>
 </div>
-
+</details>
+<div class="form-actions"><button type="submit" class="btn btn-primary" disabled title="Esta demo es de solo consulta">Guardar</button> <a asp-page="./Index" class="btn btn-outline-secondary">Volver al listado</a></div>
+</form>
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
