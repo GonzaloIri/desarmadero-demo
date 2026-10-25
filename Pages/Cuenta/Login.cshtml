@@ -1,0 +1,23 @@
+@page
+@model proyecto_desarmado.Pages.Cuenta.LoginModel
+@{
+    ViewData["Title"] = "Acceso a la demo";
+}
+
+<section class="demo-access" aria-labelledby="titulo-acceso">
+    <div class="eyebrow">DESARMADERO · DEMOSTRACIÓN</div>
+    <h1 id="titulo-acceso">Probá el sistema de inventario</h1>
+    <p class="text-muted">Explorá el panel, buscá vehículos y consultá las fichas de los repuestos.</p>
+
+    <div class="form-section">
+        <span class="badge demo-role">VISITANTE · SOLO CONSULTA</span>
+        <h2 class="mt-3">Entrá sin registrarte</h2>
+        <p class="mt-3">No necesitás una cuenta ni compartir datos personales. El acceso es público y los datos son de demostración.</p>
+        <form method="post">
+            <input type="hidden" asp-for="ReturnUrl" />
+            <button type="submit" class="btn btn-primary w-100">Entrar a la demo →</button>
+        </form>
+        <p class="text-muted mt-3 mb-0">Podés consultar y buscar. Guardar, vender, eliminar e importar están deshabilitados.</p>
+    </div>
+    <p class="text-muted">Al cerrar sesión, el inventario vuelve a pedirte que ingreses.</p>
+</section>

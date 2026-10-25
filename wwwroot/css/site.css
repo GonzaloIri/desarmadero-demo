@@ -142,3 +142,11 @@ footer span{display:none}
 .inventory-details-link{display:inline-block;color:var(--ink);text-decoration:none}
 .inventory-details-link:hover{color:var(--accent)}
 .inventory-row:hover .inventory-details-link{color:var(--accent)}
+
+.session-controls{margin-left:auto;display:flex;align-items:center;gap:14px;letter-spacing:0;font-size:13px;flex-wrap:wrap}
+.demo-access{max-width:620px;margin:24px auto}
+.demo-access h1{margin-bottom:16px}
+.demo-access .form-section{padding:28px;margin:28px 0}
+.demo-role{background:#352a1c;color:var(--accent);border:1px solid #594025;font-size:10px;letter-spacing:.6px}
+.btn-primary:disabled{background:var(--accent);border-color:var(--accent);color:#151515;opacity:.5}
+@media(max-width:700px){.demo-access{margin:12px auto}.demo-access .form-section{padding:20px}}

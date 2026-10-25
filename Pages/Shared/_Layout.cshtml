@@ -24,8 +24,26 @@
         <div class="sidebar-note"><span class="tiny-bar"></span>Todo en su lugar.<small>Vehículos, piezas y seguimiento.</small></div>
     </aside>
     <div class="workspace">
-        <header class="topbar"><button type="button" id="menu-toggle" class="btn btn-outline-secondary menu-toggle" aria-controls="menu-principal" aria-expanded="true"><span aria-hidden="true">☰</span> <span id="menu-label">Ocultar menú</span></button><span>GESTIÓN <span class="slash">/</span> @ViewData["Title"]</span><span class="workspace-label">DESARMADERO</span></header>
-        <main id="contenido" tabindex="-1"><div class="alert alert-warning" role="status"><strong>DEMO · Solo consulta</strong><br />Vehículos e identificadores ficticios. Podés explorar y buscar; guardar, eliminar e importar están deshabilitados.</div>@RenderBody()</main>
+        <header class="topbar"><button type="button" id="menu-toggle" class="btn btn-outline-secondary menu-toggle" aria-controls="menu-principal" aria-expanded="true"><span aria-hidden="true">☰</span> <span id="menu-label">Ocultar menú</span></button><span>GESTIÓN <span class="slash">/</span> @ViewData["Title"]</span><div class="session-controls">
+            @if (User.Identity?.IsAuthenticated == true)
+            {
+                <span>@User.Identity.Name <span class="badge demo-role">Consulta</span></span>
+                <form method="post" asp-page="/Cuenta/Logout" class="m-0">
+                    <button type="submit" class="btn btn-outline-secondary btn-sm">Cerrar sesión</button>
+                </form>
+            }
+            else
+            {
+                <a asp-page="/Cuenta/Login" class="btn btn-outline-primary btn-sm">Entrar a la demo</a>
+            }
+        </div></header>
+        <main id="contenido" tabindex="-1">
+            @if (User.Identity?.IsAuthenticated == true)
+            {
+                <div class="alert alert-warning" role="status"><strong>DEMO · Solo consulta</strong><br />Vehículos e identificadores ficticios. Podés explorar y buscar; guardar, vender, eliminar e importar están deshabilitados.</div>
+            }
+            @RenderBody()
+        </main>
         <footer>Desarmadero <span>Inventario y gestión</span><a asp-page="/Privacy">Privacidad</a></footer>
     </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
