@@ -1,5 +1,6 @@
 @{
     var pagina = ViewContext.RouteData.Values["page"]?.ToString() ?? "";
+    var esLogin = pagina == "/Cuenta/Login";
 }
 <!DOCTYPE html>
 <html lang="es" data-bs-theme="dark">
@@ -11,8 +12,10 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
-<body>
+<body class="@(esLogin ? "login-page" : null)">
     <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    @if (!esLogin)
+    {
     <aside class="sidebar" id="menu-principal">
         <a class="brand" asp-page="/Index"><span class="brand-mark" aria-hidden="true">D<span> /</span></span><span>DESARMADERO<small>CONTROL DE INVENTARIO</small></span></a>
         <p class="nav-caption">ESPACIO DE TRABAJO</p>
@@ -23,7 +26,10 @@
         </nav>
         <div class="sidebar-note"><span class="tiny-bar"></span>Todo en su lugar.<small>Vehículos, piezas y seguimiento.</small></div>
     </aside>
+    }
     <div class="workspace">
+        @if (!esLogin)
+        {
         <header class="topbar"><button type="button" id="menu-toggle" class="btn btn-outline-secondary menu-toggle" aria-controls="menu-principal" aria-expanded="true"><span aria-hidden="true">☰</span> <span id="menu-label">Ocultar menú</span></button><span>GESTIÓN <span class="slash">/</span> @ViewData["Title"]</span><div class="session-controls">
             @if (User.Identity?.IsAuthenticated == true)
             {
@@ -37,7 +43,13 @@
                 <a asp-page="/Cuenta/Login" class="btn btn-outline-primary btn-sm">Entrar a la demo</a>
             }
         </div></header>
+        }
         <main id="contenido" tabindex="-1">
+            @if (esLogin)
+            {
+                <div class="brand login-brand"><span class="brand-mark" aria-hidden="true">D<span> /</span></span><span>DESARMADERO<small>CONTROL DE INVENTARIO</small></span></div>
+            }
+
             @if (User.Identity?.IsAuthenticated == true)
             {
                 <div class="alert alert-warning" role="status"><strong>DEMO · Solo consulta</strong><br />Vehículos e identificadores ficticios. Podés explorar y buscar; guardar, vender, eliminar e importar están deshabilitados.</div>

@@ -150,3 +150,12 @@ footer span{display:none}
 .demo-role{background:#352a1c;color:var(--accent);border:1px solid #594025;font-size:10px;letter-spacing:.6px}
 .btn-primary:disabled{background:var(--accent);border-color:var(--accent);color:#151515;opacity:.5}
 @media(max-width:700px){.demo-access{margin:12px auto}.demo-access .form-section{padding:20px}}
+
+/* El acceso tiene su propia presentación, sin navegación del inventario. */
+.login-page .workspace{margin-left:0}
+.login-page main{width:100%;max-width:680px;margin:0 auto;padding:48px 24px}
+.login-brand{width:fit-content;margin:0 auto 36px}
+.login-page .inventory-form{margin:0 auto}
+.login-page main>h1,.login-page main>p{max-width:440px;margin-left:auto;margin-right:auto}
+.login-page .demo-access{margin:0}
+@media(max-width:700px){.login-page main{padding:32px 20px}.login-brand{margin-bottom:28px}}
